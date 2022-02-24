@@ -1,6 +1,19 @@
 {{ define "main" }}
 
+	<style>
+		.photos-grid-sizer {
+			width: 30%;
+		}
+	
+		.photos-grid-item {
+			width: 30%;
+			margin-bottom: 10px;
+			corner-radius: 5px;
+		}
+	</style>
+
 	<div class="photos-grid-container">
+	  <div class="photos-grid-sizer"></div>
 
 		{{- $list := where .Site.Pages ".Params.photos" "!=" nil -}}
 		{{- $len := (len $list) -}}
@@ -8,7 +21,7 @@
 			<div class="photos-grid-item">
 				<a href="{{ .Permalink }}">
 					{{ range first 1 .Params.photos }}
-						<img src="{{ . }}" style="width: 200px;">
+						<img src="{{ . }}">
 					{{ end }}
 				</a>
 			</div>
@@ -21,7 +34,8 @@
 		var grid = document.querySelector(".photos-grid-container");
 		var msnry = new Masonry(grid, {
 			itemSelector: ".photos-grid-item",
-			columnWidth: 200
+			columnWidth: ".photos-grid-sizer",
+			gutter: 10
 		});
 	</script>
 
