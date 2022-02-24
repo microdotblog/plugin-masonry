@@ -1,0 +1,28 @@
+{{ define "main" }}
+
+	<div class="photos-grid-container">
+
+	{{- $list := where .Site.Pages ".Params.photos" "!=" nil -}}
+	{{- $len := (len $list) -}}
+	{{ range $index, $value := $list }}
+    <div class="photos-grid-item">
+  		<a href="{{ .Permalink }}">
+	  		{{ range first 1 .Params.photos }}
+		  		<img src="{{ . }}">
+			  {{ end }}
+  		</a>
+    </div>
+	{{ end }}
+
+	</div>
+
+<script type="text/javascript" src="/js/masonry.pkgd.min.js"></script>
+<script>
+  var grid = document.querySelector('.photos-grid-container');
+  var msnry = new Masonry(grid, {
+    itemSelector: '.photos-grid-item',
+    columnWidth: 200
+  });
+</script>
+
+{{ end }}
