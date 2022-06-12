@@ -20,8 +20,8 @@
 		{{ range $index, $value := $list }}
 			<div class="photos-grid-item">
 				<a href="{{ .Permalink }}">
-					{{ range first 1 .Params.photos }}
-						<img src="{{ . }}">
+					{{ range first 1 .Params.photos_with_metadata }}
+						<img src="{{ .url }}" width="{{ .width }}" height="{{ .height }}">
 					{{ end }}
 				</a>
 			</div>
